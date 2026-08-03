@@ -1,0 +1,70 @@
+ package slidingWindow;
+
+// public class MaxSumSubarrayofsizeK {
+
+//     public static int maxSum(int arr[],int k){
+
+//         int maxsum=Integer.MIN_VALUE;
+
+//         for (int i = 0; i <= arr.length - k; i++) {
+
+//             int sum = 0;
+
+//             for (int j = i; j < i + k; j++) {
+//                 sum += arr[j];
+//             }
+//             if(sum>maxsum){
+//                 maxsum=sum;
+//             }
+//        }
+//        return maxsum;
+//     }
+    
+//     public static void main(String[] args) {
+//         int arrs[]={100,200,300,400,500};
+//         int k=2;
+//         int res=maxSum(arrs,k);
+//         System.out.println("MaxSum: "+res);
+
+//     }
+// }
+//---------------using sliding window-----------
+class Solution {
+    public int maxSubarraySum(int[] arr, int k) {
+
+        int low = 0;
+        int high = k - 1;
+        int sum = 0;
+
+        // Calculate the sum of the first window
+        for (int i = 0; i < k; i++) {
+            sum += arr[i];
+        }
+
+        int result = sum;
+
+        while (high < arr.length - 1) {
+
+            low++;
+            high++;
+
+            sum = sum - arr[low - 1];
+            sum = sum + arr[high];
+
+            result = Math.max(result, sum);
+        }
+
+        return result;
+    }
+
+     public static void main(String[] args) {
+        int arrs[]={100,200,300,400,500,700};
+        int k=2;
+
+        // Create object
+        Solution obj = new Solution();
+        int res=obj.maxSubarraySum(arrs,k);
+        System.out.println("MaxSum: "+res);
+
+    }
+}
