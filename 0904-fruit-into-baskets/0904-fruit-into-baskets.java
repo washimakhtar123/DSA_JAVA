@@ -4,24 +4,24 @@ class Solution {
     public int totalFruit(int[] fruits) {
         HashMap<Integer, Integer> map = new HashMap<>();
 
-        int left = 0;
+        int low = 0;
         int max = 0;
 
-        for (int right = 0; right < fruits.length; right++) {
+        for (int high = 0; high < fruits.length; high++) {
 
-            map.put(fruits[right], map.getOrDefault(fruits[right], 0) + 1);
+            map.put(fruits[high], map.getOrDefault(fruits[high], 0) + 1);
 
             while (map.size() > 2) {
-                map.put(fruits[left], map.get(fruits[left]) - 1);
+                map.put(fruits[low], map.get(fruits[low]) - 1);
 
-                if (map.get(fruits[left]) == 0) {
-                    map.remove(fruits[left]);
+                if (map.get(fruits[low]) == 0) {
+                    map.remove(fruits[low]);
                 }
 
-                left++;
+                low++;
             }
 
-            max = Math.max(max, right - left + 1);
+            max = Math.max(max, high - low + 1);
         }
 
         return max;
