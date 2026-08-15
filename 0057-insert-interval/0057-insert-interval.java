@@ -3,35 +3,27 @@ class Solution {
 
         ArrayList<int[]> ans = new ArrayList<>();
 
+        int n = intervals.length;
         int i = 0;
 
-        // 1. newInterval se pehle wale intervals
-        while (i < intervals.length &&
-               intervals[i][1] < newInterval[0]) {
-
+        // 1. Jo intervals newInterval se pehle hain
+        for (; i < n && intervals[i][1] < newInterval[0]; i++) {
             ans.add(intervals[i]);
-            i++;
         }
 
-        // 2. Overlapping intervals ko merge karo
-        while (i < intervals.length &&
-               intervals[i][0] <= newInterval[1]) {
+        // 2. Overlapping intervals merge karo
+        for (; i < n && intervals[i][0] <= newInterval[1]; i++) {
 
             newInterval[0] = Math.min(newInterval[0], intervals[i][0]);
-
             newInterval[1] = Math.max(newInterval[1], intervals[i][1]);
-
-            i++;
         }
 
-        // 3. Merged newInterval add karo
+        // 3. Merged interval add karo
         ans.add(newInterval);
 
-        // 4. Baaki intervals add karo
-        while (i < intervals.length) {
-
+        // 4. Remaining intervals add karo
+        for (; i < n; i++) {
             ans.add(intervals[i]);
-            i++;
         }
 
         return ans.toArray(new int[ans.size()][]);
