@@ -10,8 +10,8 @@ class Solution {
         while (i < firstList.length && j < secondList.length) {
 
             // First list ke current interval ka start aur end
-            int s1 = firstList[i][0];
-            int e1 = firstList[i][1];
+            int s1 = firstList[i][0];//s1=start1
+            int e1 = firstList[i][1];//e1=end1
 
             // Second list ke current interval ka start aur end
             int s2 = secondList[j][0];
