@@ -9,7 +9,7 @@ class Solution {
 
             if(nums[guess]>nums[nums.length-1]){//part2 hai 
                 low=guess+1;
-            }else{
+            }else{//part 1 ka first answer hai
                 result=guess;
                 high=guess-1;
             }
